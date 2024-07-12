@@ -21,7 +21,7 @@ function Todo() {
 
     // Fetch tasks from database
     useEffect(() => {
-        axios.get('http://127.0.0.1:3001/getTodoList')
+        axios.get(process.env.REACT_APP_BACKEND_URL+'/getTodoList')
             .then(result => {
                 setTodoList(result.data);
             })
@@ -251,7 +251,7 @@ function Todo() {
                                         onChange={(e) => setNewStatus(e.target.value)}
                                     >
                                         <option value="Incomplete">Incomplete</option>
-                                        <option value="">Complete</option>
+                                        <option value="Complete">Complete</option>
                                     </select>
                                 </div>
                                 <div className="mb-3">
