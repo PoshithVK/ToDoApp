@@ -70,7 +70,7 @@ function Todo() {
 
         const newTaskData = { task: newTask, status: newStatus, deadline: newDeadline };
 
-        axios.post('http://127.0.0.1:3001/addTodoList', newTaskData)
+        axios.post(process.env.REACT_APP_BACKEND_URL+'/addTodoList', newTaskData)
             .then(res => {
                 console.log(res);
                 showNotification("Task Added", `You have added a new task: "${newTask}"`);
@@ -95,7 +95,7 @@ function Todo() {
         }
 
         // Updating edited data to the database through updateById API
-        axios.post('http://127.0.0.1:3001/updateTodoList/' + id, editedData)
+        axios.post(process.env.REACT_APP_BACKEND_URL+'/updateTodoList/' + id, editedData)
             .then(result => {
                 console.log(result);
                 showNotification("Task Updated", `The task "${editedTask}" has been updated.`);
@@ -112,7 +112,7 @@ function Todo() {
     // Function to mark task as completed
     const markAsCompleted = (id) => {
         const updatedStatus = "Completed";
-        axios.post(`http://127.0.0.1:3001/updateTodoList/${id}`, { status: updatedStatus })
+        axios.post(process.env.REACT_APP_BACKEND_URL+`/updateTodoList/${id}`, { status: updatedStatus })
             .then(result => {
                 console.log(result);
                 showNotification("Task Completed", `The task has been marked as completed.`);
@@ -123,7 +123,7 @@ function Todo() {
 
     // Delete task from database
     const deleteTask = (id) => {
-        axios.delete('http://127.0.0.1:3001/deleteTodoList/' + id)
+        axios.delete(process.env.REACT_APP_BACKEND_URL+'/deleteTodoList/' + id)
             .then(result => {
                 console.log(result);
                 window.location.reload();
